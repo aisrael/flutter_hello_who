@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:hello/screens/next_screen.dart';
+import 'package:hello/models/app_state.dart';
+import 'package:hello/screens/who_to_greet_screen.dart';
+import 'package:provider/provider.dart';
 
 class WelcomeScreen extends StatelessWidget {
   @override
@@ -15,11 +17,15 @@ class WelcomeScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
           child: Column(
             children: <Widget>[
-              Text('Hello, world.'),
+              Consumer<AppState>(builder: (context, appState, child) {
+                return Text('Hello, ${appState.text}.');
+              }),
               RaisedButton(
                 child: Text('Next'),
-                onPressed: () => Navigator.push(context,
-                    CupertinoPageRoute(builder: (_context) => NextScreen())),
+                onPressed: () => Navigator.push(
+                    context,
+                    CupertinoPageRoute(
+                        builder: (_context) => WhoToGreetScreen())),
               )
             ],
           ),

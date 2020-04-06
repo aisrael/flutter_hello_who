@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:hello/models/app_state.dart';
 import 'package:hello/screens/welcome_screen.dart';
+import 'package:provider/provider.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(
+    ChangeNotifierProvider(create: (context) => AppState(), child: MyApp()));
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

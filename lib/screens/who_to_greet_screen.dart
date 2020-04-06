@@ -1,14 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:hello/models/app_state.dart';
+import 'package:provider/provider.dart';
 
-class NextScreen extends StatefulWidget {
+class WhoToGreetScreen extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return NextScreenState();
+    return WhoToGreetScreenState();
   }
 }
 
-class NextScreenState extends State<NextScreen> {
+class WhoToGreetScreenState extends State<WhoToGreetScreen> {
   TextEditingController _textEditingController;
 
   @override
@@ -28,7 +30,7 @@ class NextScreenState extends State<NextScreen> {
     // TODO: implement build
     return Scaffold(
       appBar: AppBar(
-        title: Text('Next'),
+        title: Text('Hello Who?'),
       ),
       body: Center(
         child: Padding(
@@ -39,7 +41,7 @@ class NextScreenState extends State<NextScreen> {
                 controller: _textEditingController,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(),
-                  labelText: 'Enter text here',
+                  labelText: 'Enter who to greet here',
                 ),
                 onChanged: (_value) => setState(() {}),
                 onSubmitted: (value) => _setText(context, value),
@@ -69,5 +71,7 @@ class NextScreenState extends State<NextScreen> {
 
   _setText(final BuildContext context, final String value) {
     debugPrint("_setText('$value')");
+    Provider.of<AppState>(context, listen: false).setText(value);
+    Navigator.pop(context);
   }
 }
